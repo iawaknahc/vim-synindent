@@ -22,11 +22,9 @@ function! s:get_stats(lines) abort
       continue
     endif
 
-    " Ignore lines starting with syntax group
-    " If the beginning of this line is in a syntax group,
-    " then it is very likely that it is not whitespaces.
+    " Ignore lines that are comments or constants
     let syn_group = synIDattr(synIDtrans(synID(i, 1, 1)), "name")
-    if syn_group != ""
+    if syn_group == "Comment" || syn_group == "Constant"
       continue
     endif
 
