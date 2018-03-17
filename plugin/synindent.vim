@@ -72,6 +72,11 @@ function! s:detect() abort
   return s:apply_stats_to_options(stats)
 endfunction
 
+function! synindent#get_stats() abort
+  let stats = s:get_stats(getline(1, 1024))
+  return stats
+endfunction
+
 augroup SynIndent
   autocmd!
   autocmd FileType * call s:detect()
